@@ -108,6 +108,8 @@ end
 
 vim.keymap.set('n', '<leader>q', close_buffers, { desc = 'Close all buffers except current one' })
 
+vim.keymap.set('n', '<leader>ee', 'oif err != nil {<Cr><Esc>Oreturn err<Esc>o}<Esc>')
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
