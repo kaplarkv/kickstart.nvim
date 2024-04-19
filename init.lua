@@ -50,7 +50,7 @@ vim.opt.timeoutlen = 300
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
-vim.opt.splitbelow = true
+-- vim.opt.splitbelow = true
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -175,6 +175,17 @@ require('lazy').setup {
         changedelete = { text = '~' },
       },
     },
+  },
+
+  {
+    'tpope/vim-fugitive',
+    config = function()
+      vim.keymap.set('n', '<leader>gs', ':Git<cr>', { desc = '[G]it [S]tatus' })
+      vim.keymap.set('n', '<leader>gc', ':Git checkout ', { desc = '[G]it [C]heckout' })
+      vim.keymap.set('n', '<leader>gp', ':Git push<cr>', { desc = '[G]it [P]ush' })
+      vim.keymap.set('n', '<leader>gl', ':Git pull<cr>', { desc = '[G]it Pul[l]' })
+      vim.keymap.set('n', '<leader>gm', ':Git merge ', { desc = '[G]it [M]erge' })
+    end,
   },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
