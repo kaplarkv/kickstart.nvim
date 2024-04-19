@@ -96,6 +96,18 @@ vim.keymap.set('n', '<leader>-', vim.cmd.split, { desc = 'Horizontal split' })
 vim.keymap.set('n', '<leader>p', [["+p]])
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
 
+local function close_buffers()
+  local bufs = vim.api.nvim_list_bufs()
+  local current_buf = vim.api.nvim_get_current_buf()
+  for _, i in ipairs(bufs) do
+    if i ~= current_buf then
+      vim.api.nvim_buf_delete(i, {})
+    end
+  end
+end
+
+vim.keymap.set('n', '<leader>q', close_buffers, { desc = 'Close all buffers except current one' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
