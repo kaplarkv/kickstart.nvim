@@ -483,6 +483,7 @@ require('lazy').setup {
       local servers = {
         -- clangd = {},
         gopls = {},
+        html = {},
         htmx = {},
         phpactor = {},
         -- pyright = {},
@@ -827,6 +828,7 @@ require('lazy').setup {
   },
 
   { 'nvim-treesitter/nvim-treesitter-context' },
+  { 'nvim-treesitter/nvim-treesitter-textobjects' },
 
   {
     'ThePrimeagen/harpoon',
