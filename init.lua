@@ -71,6 +71,8 @@ vim.opt.scrolloff = 5
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+vim.filetype.add { extension = { templ = 'templ' } }
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -483,9 +485,11 @@ require('lazy').setup {
       local servers = {
         -- clangd = {},
         gopls = {},
-        html = {},
-        htmx = {},
+        html = { filetypes = { 'html', 'templ' } },
+        htmx = { filetypes = { 'html', 'templ' } },
         phpactor = {},
+        templ = { filetypes = { 'templ' } },
+        tailwindcss = { filetypes = { 'templ' }, init_options = { userLanguages = { templ = 'html' } } },
         -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -747,9 +751,12 @@ require('lazy').setup {
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'vrischmann/tree-sitter-templ',
+    },
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'go', 'javascript', 'typescript', 'php', 'dockerfile' },
+      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'go', 'javascript', 'typescript', 'php', 'dockerfile', 'templ' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
