@@ -687,6 +687,10 @@ require('lazy').setup {
           { name = 'path' },
         },
       }
+
+      cmp.setup.filetype({ 'sql' }, {
+        sources = { { name = 'vim-dadbod-completion' } },
+      })
     end,
   },
 
@@ -756,7 +760,23 @@ require('lazy').setup {
     },
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'go', 'javascript', 'typescript', 'php', 'dockerfile', 'templ' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'vim',
+        'vimdoc',
+        'go',
+        'javascript',
+        'typescript',
+        'php',
+        'dockerfile',
+        'templ',
+        'sql',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -860,6 +880,15 @@ require('lazy').setup {
       end
     end,
   },
+
+  { 'tpope/vim-dadbod' },
+  {
+    'kristijanhusak/vim-dadbod-ui',
+    config = function()
+      vim.keymap.set('n', '<leader>db', ':tabnew | DBUIToggle<cr>', { desc = '[D][B]ui' })
+    end,
+  },
+  { 'kristijanhusak/vim-dadbod-completion' },
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
