@@ -460,7 +460,7 @@ require('lazy').setup {
           -- This may be unwanted, since they displace some of your code
           if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
             map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
             end, '[T]oggle Inlay [H]ints')
           end
         end,
@@ -484,7 +484,21 @@ require('lazy').setup {
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        gopls = {},
+        gopls = {
+          settings = {
+            gopls = {
+              hints = {
+                compositeLiteralFields = true,
+                constantValues = true,
+                parameterNames = true,
+                assignVariableTypes = true,
+                compositeLiteralTypes = true,
+                functionTypeParameters = true,
+                rangeVariableTypes = true,
+              },
+            },
+          },
+        },
         html = { filetypes = { 'html', 'templ' } },
         htmx = { filetypes = { 'html', 'templ' } },
         phpactor = {},
