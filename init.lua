@@ -790,6 +790,7 @@ require('lazy').setup {
         'dockerfile',
         'templ',
         'sql',
+        'diff',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
