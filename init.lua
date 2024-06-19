@@ -915,7 +915,12 @@ require('lazy').setup {
         },
       }
 
+      local function open_working_dir()
+        require('oil').open(vim.fn.getcwd())
+      end
+
       vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+      vim.keymap.set('n', '_', open_working_dir, { desc = 'Open parent directory' })
     end,
   },
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
